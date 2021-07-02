@@ -41,8 +41,9 @@ while should_continue:
     pennies = float(input("how many pennies? "))
 
     if data.MENU[drink]["cost"] > calculate_amount(quarters, dimes, nickles, pennies):
+        how_many_money = calculate_amount(quarters, dimes, nickles, pennies)
         print(
-            f"Not enough money, {data.MENU[drink]['cost']} and you have: {calculate_amount(quarters,dimes,nickles,pennies)} Money refunded")
+            f"Not enough money, {data.MENU[drink]['cost']}$ and you have: {how_many_money}$ Money refunded")
 
     elif check_resources(data.resources, data.MENU[drink]["ingredients"]) == False:
         print(
@@ -52,6 +53,7 @@ while should_continue:
         for key in data.resources:
             data.resources[key] = data.resources[key] - \
                 data.MENU[drink]["ingredients"][key]
+
         money = calculate_amount(quarters, dimes, nickles, pennies)
         print(
-            f"here is your drink {drink} and here is your money {round(money - data.MENU[drink]['cost'],2)} ")
+            f"here is your drink {drink} and here is your money {round(money - data.MENU[drink]['cost'],2)} in change")
